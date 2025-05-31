@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:note_app11/note.dart';
+import 'package:note_app11/model/note.dart';
 import '../constants.dart';
 import 'package:intl/intl.dart';
 
