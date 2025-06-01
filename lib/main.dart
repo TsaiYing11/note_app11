@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> {
         },
         child: Icon(Icons.add),
       ),
-      appBar: AppBar(title: const Text('Flutter Week 2')),
+      appBar: AppBar(title: const Text('Flutter Week 3')),
       body: ListView.builder(
         itemCount: noteService.notes.length,
         itemBuilder: (context, index) {
