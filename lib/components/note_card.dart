@@ -35,8 +35,9 @@ class NoteCard extends StatelessWidget {
             trailing: IconButton(
               onPressed: onPressed,
               icon: Icon(
-                Icons.remove_circle_outline_outlined,
+                Icons.delete,
                 color: Colors.grey.shade700,
+                size: 35,
               ),
             ),
           ),

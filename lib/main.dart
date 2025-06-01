@@ -32,19 +32,22 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showDialog(
-            context: context,
-            builder:
-                (BuildContext context) => AlertDialog(
-              title: TextField(onChanged: (value) {}),
-              content: TextField(onChanged: (value) {}),
-            ),
+        onPressed: () async {
+          final result = await Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => AddNote()),
           );
+          if (result != null && result is Map) {
+            setState(() {
+              noteService.addNote(
+                title: result['title'] ?? '',
+                descripion: result['description'] ?? '',
+              );
+            });
+          }
         },
         child: Icon(Icons.add),
       ),
-      appBar: AppBar(title: const Text('Flutter Week 2')),
+      appBar: AppBar(title: const Text('Flutter Week 3')),
       body: ListView.builder(
         itemCount: noteService.notes.length,
         itemBuilder: (context, index) {
@@ -63,18 +66,40 @@ class _HomePageState extends State<HomePage> {
   }
 }
 class AddNote extends StatelessWidget {
-  const AddNote({super.key});
+  AddNote({super.key});
+
+  final TextEditingController titlecontroller = TextEditingController();
+  final TextEditingController descriptioncontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('add_note'),),
       body: Column(
-
+        children: [
+          TextField(
+            controller: titlecontroller,
+            decoration: InputDecoration(
+              hintText: "title"
+            ),
+          ),
+          TextField(
+            controller: descriptioncontroller,
+            decoration: InputDecoration(
+                hintText: "description"
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).pop({
+                'title': titlecontroller.text,
+                'description': descriptioncontroller.text,
+              });
+            },
+            child: Text('OK'),
+          ),
+        ],
       ),
-
     );
   }
 }
-
-
