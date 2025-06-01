@@ -63,18 +63,40 @@ class _HomePageState extends State<HomePage> {
   }
 }
 class AddNote extends StatelessWidget {
-  const AddNote({super.key});
+  AddNote({super.key});
+
+  final TextEditingController titlecontroller = TextEditingController();
+  final TextEditingController descriptioncontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('add_note'),),
       body: Column(
-
+        children: [
+          TextField(
+            controller: titlecontroller,
+            decoration: InputDecoration(
+              hintText: "title"
+            ),
+          ),
+          TextField(
+            controller: descriptioncontroller,
+            decoration: InputDecoration(
+                hintText: "description"
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).pop({
+                'title': titlecontroller.text,
+                'description': descriptioncontroller.text,
+              });
+            },
+            child: Text('OK'),
+          ),
+        ],
       ),
-
     );
   }
 }
-
-
