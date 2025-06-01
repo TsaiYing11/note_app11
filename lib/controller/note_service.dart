@@ -37,5 +37,10 @@ class NoteService{
   void deleteNote({required int index}){
     _notes.removeAt(index);
   }
+  void addNote({required String title, required String descripion}) {
+    notes.add(
+      Note(tilte: title,descripion: descripion,dateTime: DateTime.now(),),
+    );
+  }
 }
 

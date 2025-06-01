@@ -1,19 +1,32 @@
 import 'constants.dart';
 import 'package:flutter/material.dart';
+import 'components/note_card.dart';
 import 'package:note_app11/controller/note_service.dart';
-import 'package:note_app11/components/note_card.dart';
 
 void main() => runApp(MaterialApp(theme: ThemeData.dark(), home: MyApp()));
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'with teammate',
+      theme: ThemeData.dark(),
+      home: HomePage(),
+      routes: <String, WidgetBuilder>{'/add_note': (_) => AddNote()},
+    );
+  }
 }
 
-class _MyAppState extends State<MyApp> {
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   final NoteService noteService = NoteService();
   @override
   Widget build(BuildContext context) {
@@ -40,7 +53,7 @@ class _MyAppState extends State<MyApp> {
             color: colorPool[index % colorPool.length],
             onPressed: () {
               setState(() {
-                noteService.deleteNote(index: index);
+                noteService.deleteNote(index:index);
               });
             },
           );
@@ -49,3 +62,19 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+class AddNote extends StatelessWidget {
+  const AddNote({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('add_note'),),
+      body: Column(
+
+      ),
+
+    );
+  }
+}
+
+
