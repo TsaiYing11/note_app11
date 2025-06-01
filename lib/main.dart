@@ -32,15 +32,15 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showDialog(
-            context: context,
-            builder:
-                (BuildContext context) => AlertDialog(
-              title: TextField(onChanged: (value) {}),
-              content: TextField(onChanged: (value) {}),
-            ),
+        onPressed: () async {
+          final result = await Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => AddNote()),
           );
+          if (result != null && result is Map) {
+            setState(() {
+              noteService.notes.insert(0, newNote); // 新增在最上面
+            });
+          }
         },
         child: Icon(Icons.add),
       ),
