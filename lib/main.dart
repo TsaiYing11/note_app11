@@ -38,7 +38,10 @@ class _HomePageState extends State<HomePage> {
           );
           if (result != null && result is Map) {
             setState(() {
-              noteService.notes.insert(0, newNote); // 新增在最上面
+              noteService.addNote(
+                title: result['title'] ?? '',
+                descripion: result['description'] ?? '',
+              );
             });
           }
         },
