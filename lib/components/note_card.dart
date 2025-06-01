@@ -37,6 +37,7 @@ class NoteCard extends StatelessWidget {
               icon: Icon(
                 Icons.delete,
                 color: Colors.grey.shade700,
+                size: 35,
               ),
             ),
           ),
